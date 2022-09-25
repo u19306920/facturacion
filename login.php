@@ -44,7 +44,7 @@ else{
 <!DOCTYPE html>
 <html>
 <head>
-  <title>::Elicar:.</title>
+  <title>::EMPRESA:.</title>
   <link rel="icon" type="image/png" href="views/favicon.png">
   <style type="text/css">
     @import url(https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,700);
