@@ -63,5 +63,5 @@
       ],                                  
     } );
   });
-  document.title = "::Elicar:: - Tipo de Cambio"
+  document.title = "::Empresa:: - Tipo de Cambio"
 </script>
