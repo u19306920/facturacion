@@ -1,6 +1,6 @@
 <?php
 if (isset($principal)) {
-  require('class/comprobantes_series.php');
+  require('class/formas_pago.php');
 ?>
       <!-- Site Content -->
       <div class="dt-content">
@@ -25,7 +25,7 @@ if (isset($principal)) {
 
                 <!-- Card Heading -->
                 <div class="dt-card__heading">
-                  <h3 class="dt-card__title">Series de Comprobantes</h3><!--Titulo-->
+                  <h3 class="dt-card__title">Formas de Pago</h3><!--Titulo-->
                 </div>
                 <!-- /card heading -->
 
@@ -39,7 +39,7 @@ if (isset($principal)) {
                 <ul class="nav nav-tabs" role="tablist">
                   <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#tab-pane-1" role="tab"
-                       aria-controls="tab-pane-1" aria-selected="true"><i class="fas fa-file"></i> Listado Series
+                       aria-controls="tab-pane-1" aria-selected="true"><i class="fas fa-file"></i> Listado de Formas de Pago
                     </a>
                   </li>
                   <!--
@@ -71,52 +71,36 @@ if (isset($principal)) {
                             <table id="data-table2" class="table table-hover dataTable dtr-inline">
                               <thead>
                                 <tr class="gradeX">
-                                  <th>Tipo de Comprobante</th>
-                                  <th>Serie</th>
-                                  <th>Exportación</th>
+                                  <th>ID</th>
+                                  <th>Descripción</th>
+                                  <th>Tipo</th>
                                   <th>Estado</th>
                                   <th>Acciones</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <?php
-                                  $objSeries = new Comprobantes_series();
-                                  $Series = $objSeries->comprobantes_series();
-                                  if($Series > 0){
+                                  $objFormapago = new FormasPago();
+                                  $FormasPago = $objFormapago->metodos_de_pago();
+                                  if($FormasPago > 0){
                                     $i=0;
-                                    foreach ($Series as $serie){
+                                    foreach ($FormasPago as $FormaPago){
                                       $i=$i+1;
                                 ?>
                                 <tr class="gradeX">
                                   <td>
                                     <?php
-                                      switch ($serie['tipo_documento']) {
-                                        case '01':
-                                          echo "FACTURA";
-                                          break;
-                                        case '03':
-                                          echo "BOLETA";
-                                          break;
-                                        case '07':
-                                          echo "NOTA DE CREDITO";
-                                          break;
-                                        case '08':
-                                          echo "NOTA DE DEBITO";
-                                          break;
-                                        default:
-                                          echo $serie['tipo_documento'];
-                                          break;
-                                      }
+                                      echo $FormaPago['idmetodo_de_pago'];
                                     ?>
                                   </td>
-                                  <td><?=$serie['serie_documento']?></td>
+                                  <td><?=$FormaPago['descripcion']?></td>
                                   <td>
                                     <?php
-                                    if ($serie['exportacion']) {
-                                      echo "Si";
+                                    if ($FormaPago['credito']) {
+                                      echo "Credito";
                                     }
                                     else {
-                                      echo "No";
+                                      echo "Contado";
                                     }
                                     
                                       
@@ -124,7 +108,7 @@ if (isset($principal)) {
                                   </td>
                                   <td>
                                     <?php
-                                    if ($serie['estado']) {
+                                    if ($FormaPago['estado']) {
                                       echo "Activo";
                                     }
                                     else {
@@ -133,8 +117,8 @@ if (isset($principal)) {
                                     ?>
                                   </td>
                                   <td>
-                                    <a title="Editar" href="?module=configuracion&page=series_editar&id=<?=$serie['idcomprobantes_series']?>" ><i class="fa fa-fw fa-pen"></i></a>
-                                    <a title="Eliminar" href="/modulos/configuracion/series_eliminar.php?id=<?=$serie['idcomprobantes_series']?>"><i class="fa fa-fw fa-trash"></i></a>
+                                    <a title="Editar" href="#&id=<?=$FormaPago['idcomprobantes_series']?>" ><i class="fa fa-fw fa-pen"></i></a>
+                                    <a title="Eliminar" href="#id=<?=$FormaPago['idcomprobantes_series']?>"><i class="fa fa-fw fa-trash"></i></a>
                                   </td>
                                 </tr>
                                 <?php
