@@ -57,5 +57,5 @@
       ],                                  
     } );
   });
-  document.title = "::Elicar:: - Detalle de Orden"
+  document.title = "::Empresa:: - Detalle de Orden"
 </script>

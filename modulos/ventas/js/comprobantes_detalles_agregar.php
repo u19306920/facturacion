@@ -2,5 +2,5 @@
 ?>
 <script type="text/javascript">
  
-  document.title = "::Elicar:: - Detalle de Comprobante"
+  document.title = "::Empresa:: - Detalle de Comprobante"
 </script>

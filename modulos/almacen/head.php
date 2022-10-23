@@ -10,7 +10,7 @@ if (isset($principal)) {
   <meta name="description" content="Wieldy - A fully responsive, HTML5 based admin template">
   <meta name="keywords" content="Responsive, HTML5, admin theme, business, professional, jQuery, web design, CSS3, sass">
   <!-- /meta tags -->
-  <title>::Elicar 2.0::</title>
+  <title>::Empresa::</title>
 
   <!-- Site favicon -->
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">

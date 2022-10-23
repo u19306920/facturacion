@@ -63,5 +63,5 @@
       ],                                  
     } );
   });
-  document.title = "::Elicar:: - Comprobantes"
+  document.title = "::Empresa:: - Comprobantes"
 </script>

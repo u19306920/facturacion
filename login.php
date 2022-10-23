@@ -169,13 +169,13 @@ else{
     }
     .underlay-photo {
       animation: hue-rotate 6s infinite;
-      background: url('assets/images/fondo.jpg');
+      background: url('assets/images/fondo02.jpg');
       background-size: cover;
       -webkit-filter: grayscale(30%);
       z-index: -1;
     }
     .underlay-black {
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.4);
       z-index: -1;
     }
 
@@ -189,10 +189,45 @@ else{
     }
   </style>
   <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
+  <script type='text/javascript'>
+      santyLibBgAleat=function(){
+        this.v="1.0";
+        this.imagenes=function(){
+          var x=arguments,img=this.a(x);
+          this.s(img)};
+          this.a=function(r){
+            var a=Math.random()*r.length;
+            a=Math.floor(a);
+            return(r[a])
+          };
+          this.c=function(b){
+            head=document.getElementsByTagName("head")[0];
+            if(!head)
+              return;
+            var s=document.createElement("style");
+            s.type='text/css';
+            s.innerHTML=b;
+            head.appendChild(s)};
+            this.s=function(b){
+              var o=undefined;
+              b.css=(b.css!==o)?b.css:"";
+              b.url=(b.url!==o)?b.url:"";
+              this.c("body{background:url('"+b.url+"') "+b.css+"; background-position: center; background-repeat: no-repeat;}")
+            }
+          };
+          $santyBA=new santyLibBgAleat();
+          $santyBA.imagenes(
+            {url:"assets/images/fondo01.jpg"},
+            {url:"assets/images/fondo02.jpg"},
+            {url:"assets/images/fondo03.jpg"},
+            {url:"assets/images/fondo04.jpg"},
+            {url:"assets/images/fondo05.jpg"}
+    );
+    </script>
 </head>
 <body>
   <form class="login-form" method="POST" action="">
-    <p class="login-text">
+    <p class="login-text">Facturación<br>Electrónica
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-lock fa-stack-1x"></i>

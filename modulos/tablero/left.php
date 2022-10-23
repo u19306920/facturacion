@@ -78,10 +78,12 @@ if (isset($principal)) {
                 <a href="index.php?module=almacen&page=guias" class="dt-side-nav__link" title="Despachos">
                   <span class="dt-side-nav__text">Guias de Remisión</span> </a>
               </li>
+              <!--
               <li class="dt-side-nav__item">
                 <a href="index.php?module=almacen&page=items" class="dt-side-nav__link" title="Items">
                   <span class="dt-side-nav__text">Items</span> </a>
               </li>
+              -->
               <li class="dt-side-nav__item <?php if($module=="almacen" and ($page=="transportistas" or $page=="transportistas_ver" or $page=="vehiculos" or $page=="conductores")){ echo 'selected open';}?>">
                 <a href="index.php?module=almacen&page=transportistas" class="dt-side-nav__link <?php if($module=="almacen" and ($page=="transportistas" or $page=="transportistas_ver" or $page=="vehiculos" or $page=="conductores")){ echo 'active';}?>" title="Items">
                   <span class="dt-side-nav__text">Transportistas</span> </a>
