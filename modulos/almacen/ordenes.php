@@ -337,7 +337,7 @@ if (isset($principal)) {
                                     </select>
                                   </div>
                                   <div class="col-sm-3 mb-3">
-                                    <label for="moneda">Tipo de Orden</label>
+                                    <label for="moneda">Moneda</label>
                                     <select class="form-control" id="simple-select" name="moneda">
                                       <?php
                                       $objMonedas = new Ordenes();
