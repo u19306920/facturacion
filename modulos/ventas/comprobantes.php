@@ -134,11 +134,10 @@ if (isset($principal)) {
                                       <div class="dropdown-menu dropdown-menu-right" style="">
                                         <a class="dropdown-item" href="?module=ventas&page=comprobantes_detalles_agregar_guias&id=<?=$key['idcomprobantes']?>" title="Desde Guia">
                                           <i class="far fa-file-alt"></i> <span>Guia</span> </a>
-                                          <!--
                                         <a class="dropdown-item" href="?module=ventas&page=comprobantes_detalles_agregar_ots2&id=<?=$key['idcomprobantes']?>" title="Desde OT">
                                           <i class="fas fa-hammer"></i> <span>OT</span> </a>
-                                        <a class="dropdown-item" href="?module=ventas&page=comprobantes_detalles_agregar&id=<?=$key['idcomprobantes']?>" title="Otros">
-                                          <i class="fas fa-file-invoice"></i> <span>Factura</span> </a>-->
+                                        <a class="dropdown-item" href="?module=ventas&page=comprobantes_detalles_agregar&id=<?=$key['idcomprobantes']?>" title="Manual">
+                                          <i class="fas fa-file-invoice"></i> <span>Manual</span> </a>
                                       </div>
                                       <!-- /dropdown option -->
                                       <a href="?module=ventas&page=comprobantes_editar&id=<?=$key['idcomprobantes']?>" title="Editar" class="btn btn-xs btn-warning"><i class="fas fa-pencil-alt"></i></a>&nbsp;
@@ -254,7 +253,7 @@ if (isset($principal)) {
                                   $c=$comprobantes->comprobanteSinGuia($key['idcomprobantes']);
                                   if ($c) {
                                     ?>
-                                    <a href="?module=ventas&page=guia_de_factura&id=<?=$key['idcomprobantes']?>" class="btn btn-xs btn-info"><i class="fas fa-file-alt"></i></a>
+                                    <a title="Guia desde Factura" href="?module=ventas&page=guia_de_factura&id=<?=$key['idcomprobantes']?>" class="btn btn-xs btn-info"><i class="fas fa-file-alt"></i></a>
                                     <?php
                                   }
                                   if ($key['estado']=='05') {
@@ -263,17 +262,21 @@ if (isset($principal)) {
                                     <li class="dt-nav__item dropdown">
 
                                       <!-- Dropdown Link -->
+                                      <!--
                                       <a href="#"  class="dt-nav__link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="btn btn-xs btn-warning"><i class="far fa-clone"></i></span></a>&nbsp;&nbsp;
+                                      -->
                                       <!-- /dropdown link -->
 
                                       <!-- Dropdown Option -->
+                                      <!--
                                       <div class="dropdown-menu dropdown-menu-right" style="">
                                         <a class="dropdown-item" href="index.php?module=ventas&page=notas_creditos&key=<?=$key['observaciones']?>&id=<?=$key['idcomprobantes']?>" title="Nota de Credito" class="btn btn-xs btn-success">
                                           <i class="fas fa-minus-square"></i> <span>Nota de Crédito</span></a>
                                         <a class="dropdown-item" href="index.php?module=ventas&page=notas_debitos&key=<?=$key['observaciones']?>&id=<?=$key['idcomprobantes']?>" title="Nota de Debito" class="btn btn-xs btn-success">
                                           <i class="fas fa-plus-square"></i> <span>Nota de Débito</span> </a>
                                       </div>
+                                      -->
                                       <!-- /dropdown option -->
                                       
                                     </li>
