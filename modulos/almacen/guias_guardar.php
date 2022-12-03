@@ -7,12 +7,19 @@ if ($_SESSION['sesion']!=1) {
 require('class/guias.php');
 //print_r($_POST);
 
+$objUltimaGuia = new Guias();
+$ultimo = $objUltimaGuia->ultima_guia($_POST['serie_guia']);
+
+//print_r($ultimo);
+
+$correlativo = $ultimo[0]['numero_guia']+1;
+
 //creamos la OT
-$numero = str_pad($_POST['numero_guia'], 8, "0", STR_PAD_LEFT);
+$numero = str_pad($correlativo, 8, "0", STR_PAD_LEFT);
 $nguia = $_POST['serie_guia']."-".$numero;
 
 //creamos el numero documento
-$numero_documento = $_POST['serie_documento']."-".str_pad($_POST['numero_documento'], 8, "0", STR_PAD_LEFT);
+$numero_documento = $_POST['serie_documento']."-".str_pad($correlativo, 8, "0", STR_PAD_LEFT);
 
 //echo $nguia;
 $ocs="";
@@ -25,7 +32,7 @@ $guia = $objGuias->add(
   $_POST['fecha_emision'], 
   $_POST['fecha_traslado'], 
   $_POST['serie_guia'], 
-  $_POST['numero_guia'], 
+  $correlativo, 
   $nguia, 
   $_POST['motivo_traslado'], 
   $_POST['identidades'], 
@@ -41,4 +48,5 @@ $guia = $objGuias->add(
   $_POST['observacion'], 
   $extras, 
   $idcomprobantes);
+  
 ?>

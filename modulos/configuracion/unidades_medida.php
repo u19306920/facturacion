@@ -1,6 +1,6 @@
 <?php
 if (isset($principal)) {
-  require('class/formas_pago.php');
+  require('class/unidades_medida.php');
 ?>
       <!-- Site Content -->
       <div class="dt-content">
@@ -25,7 +25,7 @@ if (isset($principal)) {
 
                 <!-- Card Heading -->
                 <div class="dt-card__heading">
-                  <h3 class="dt-card__title">Formas de Pago</h3><!--Titulo-->
+                  <h3 class="dt-card__title">Unidades de Medida</h3><!--Titulo-->
                 </div>
                 <!-- /card heading -->
 
@@ -39,16 +39,16 @@ if (isset($principal)) {
                 <ul class="nav nav-tabs" role="tablist">
                   <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#tab-pane-1" role="tab"
-                       aria-controls="tab-pane-1" aria-selected="true"><i class="fas fa-file"></i> Listado de Formas de Pago
+                       aria-controls="tab-pane-1" aria-selected="true"><i class="fas fa-file"></i> Listado de Unidades de Medidas
                     </a>
                   </li>
                   <!--
                   <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#tab-pane-2" role="tab"
-                       aria-controls="tab-pane-2" aria-selected="true"><i class="icon icon-add"></i> Nueva Serie
+                       aria-controls="tab-pane-2" aria-selected="true"><i class="icon icon-add"></i> Nuevo Unidad de Medida
                     </a>
                   </li>
-                -->
+                  -->
                 </ul>
                 <!-- /tab navigation -->
 
@@ -71,54 +71,32 @@ if (isset($principal)) {
                             <table id="data-table2" class="table table-hover dataTable dtr-inline">
                               <thead>
                                 <tr class="gradeX">
-                                  <th>ID</th>
-                                  <th>Descripción</th>
-                                  <th>Tipo</th>
+                                  <th>N&deg;</th>
+                                  <th>Descripcion</th>
+                                  <th>Simbolo</th>
                                   <th>Estado</th>
+                                  <th>Registrado</th>
                                   <th>Acciones</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <?php
-                                  $objFormapago = new FormasPago();
-                                  $FormasPago = $objFormapago->metodos_de_pago();
-                                  if($FormasPago > 0){
+                                  $objUms = new Um();
+                                  $ums = $objUms->um();
+                                  if($ums > 0){
                                     $i=0;
-                                    foreach ($FormasPago as $FormaPago){
+                                    foreach ($ums as $um){
                                       $i=$i+1;
                                 ?>
                                 <tr class="gradeX">
+                                  <td><?=$i?></td>
+                                  <td><?=$um['descripcion']?></td>
+                                  <td><?=$um['simbolo']?></td>
+                                  <td><?=$um['estado']?></td>
+                                  <td><?=$um['actualizado']?></td>
                                   <td>
-                                    <?php
-                                      echo $FormaPago['idmetodo_de_pago'];
-                                    ?>
-                                  </td>
-                                  <td><?=$FormaPago['descripcion']?></td>
-                                  <td>
-                                    <?php
-                                    if ($FormaPago['credito']) {
-                                      echo "Credito";
-                                    }
-                                    else {
-                                      echo "Contado";
-                                    }
-                                    
-                                      
-                                    ?>
-                                  </td>
-                                  <td>
-                                    <?php
-                                    if ($FormaPago['estado']) {
-                                      echo "Activo";
-                                    }
-                                    else {
-                                      echo "Inactivo";
-                                    }
-                                    ?>
-                                  </td>
-                                  <td>
-                                    <a title="Cambiar estado" href="#&id=<?=$FormaPago['idmetodo_de_pago']?>" ><i class="fa fa-fw fa-sync-alt"></i></a>
-                                    <!--<a title="Eliminar" href="#id=<?=$FormaPago['idmetodo_de_pago']?>"><i class="fa fa-fw fa-trash"></i></a>-->
+                                    <a title="Editar" href="modulos/configuracion/um_estado?id=<?=$um['idum']?>&e=0"><i class="fa fa-fw fa-sync-alt"></i></a>
+                                    <!--<a title="Eliminar" href="/modulos/configuracion/tipo_cambio_eliminar.php?id=<?=$tipo_cambio['idtipo_cambio']?>"><i class="fa fa-fw fa-trash"></i></a>-->
                                   </td>
                                 </tr>
                                 <?php
@@ -128,12 +106,12 @@ if (isset($principal)) {
                               </tbody>
                               <tfoot>
                               <tr>
-                                <th colspan="5">&nbsp;</th>
+                                <th colspan="6">&nbsp;</th>
                               </tr>
                               </tfoot>
                             </table>
                             <?php
-                              require('js/series.php');
+                              require('js/tipo_cambio.php');
                             ?>
 
                           </div>
@@ -148,6 +126,8 @@ if (isset($principal)) {
                     </div>
                   </div>
                   <!-- /tab pane-->
+
+                  <!-- Tab Pane -->
                   <!--
                   <div id="tab-pane-2" class="tab-pane">
                     <div class="card-body">
@@ -201,6 +181,8 @@ if (isset($principal)) {
                     </div>
                   </div>
                   -->
+                  <!-- /tab pane-->
+
                 </div>
                 <!-- /tab content -->
 

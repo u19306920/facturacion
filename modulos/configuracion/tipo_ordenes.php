@@ -1,6 +1,6 @@
 <?php
 if (isset($principal)) {
-  require('class/formas_pago.php');
+  require('class/tipo_ordenes.php');
 ?>
       <!-- Site Content -->
       <div class="dt-content">
@@ -25,7 +25,7 @@ if (isset($principal)) {
 
                 <!-- Card Heading -->
                 <div class="dt-card__heading">
-                  <h3 class="dt-card__title">Formas de Pago</h3><!--Titulo-->
+                  <h3 class="dt-card__title">Tipo de Ordenes</h3><!--Titulo-->
                 </div>
                 <!-- /card heading -->
 
@@ -39,7 +39,7 @@ if (isset($principal)) {
                 <ul class="nav nav-tabs" role="tablist">
                   <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#tab-pane-1" role="tab"
-                       aria-controls="tab-pane-1" aria-selected="true"><i class="fas fa-file"></i> Listado de Formas de Pago
+                       aria-controls="tab-pane-1" aria-selected="true"><i class="fas fa-file"></i> Listado de Tipo de Ordenes
                     </a>
                   </li>
                   <!--
@@ -71,55 +71,25 @@ if (isset($principal)) {
                             <table id="data-table2" class="table table-hover dataTable dtr-inline">
                               <thead>
                                 <tr class="gradeX">
-                                  <th>ID</th>
-                                  <th>Descripción</th>
+                                  <th>N&deg;</th>
                                   <th>Tipo</th>
-                                  <th>Estado</th>
-                                  <th>Acciones</th>
+                                  <th>Serie</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <?php
-                                  $objFormapago = new FormasPago();
-                                  $FormasPago = $objFormapago->metodos_de_pago();
-                                  if($FormasPago > 0){
+                                  $objTipoOrdenes = new Ordenes_tipos();
+                                  $Tipos = $objTipoOrdenes->ordenes_tipos();
+                                  if($Tipos > 0){
                                     $i=0;
-                                    foreach ($FormasPago as $FormaPago){
+                                    foreach ($Tipos as $tipo){
                                       $i=$i+1;
                                 ?>
                                 <tr class="gradeX">
-                                  <td>
-                                    <?php
-                                      echo $FormaPago['idmetodo_de_pago'];
-                                    ?>
-                                  </td>
-                                  <td><?=$FormaPago['descripcion']?></td>
-                                  <td>
-                                    <?php
-                                    if ($FormaPago['credito']) {
-                                      echo "Credito";
-                                    }
-                                    else {
-                                      echo "Contado";
-                                    }
-                                    
-                                      
-                                    ?>
-                                  </td>
-                                  <td>
-                                    <?php
-                                    if ($FormaPago['estado']) {
-                                      echo "Activo";
-                                    }
-                                    else {
-                                      echo "Inactivo";
-                                    }
-                                    ?>
-                                  </td>
-                                  <td>
-                                    <a title="Cambiar estado" href="#&id=<?=$FormaPago['idmetodo_de_pago']?>" ><i class="fa fa-fw fa-sync-alt"></i></a>
-                                    <!--<a title="Eliminar" href="#id=<?=$FormaPago['idmetodo_de_pago']?>"><i class="fa fa-fw fa-trash"></i></a>-->
-                                  </td>
+                                  <td><?=$i?></td>
+                                  <td><?=$tipo['orden_tipo']?></td>
+                                  <td><?=$tipo['orden_serie']?></td>
+                                  
                                 </tr>
                                 <?php
                                     }
@@ -128,12 +98,12 @@ if (isset($principal)) {
                               </tbody>
                               <tfoot>
                               <tr>
-                                <th colspan="5">&nbsp;</th>
+                                <th colspan="3">&nbsp;</th>
                               </tr>
                               </tfoot>
                             </table>
                             <?php
-                              require('js/series.php');
+                              require('js/ordenes_tipos.php');
                             ?>
 
                           </div>

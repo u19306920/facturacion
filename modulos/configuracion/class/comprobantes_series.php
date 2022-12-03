@@ -26,6 +26,23 @@ class Comprobantes_series extends Conexion {
             return $data;
         }
     }
+
+    //*****************************************************************
+    // AGREGAR SERIE DE COMPROBANTES
+    //*****************************************************************
+    public function add($v1,$v2,$v3,$v4,$v5) {
+
+        $consulta = sprintf(
+            "INSERT INTO comprobantes_series values(null, %s, %s, %s, %s, %s);",
+            parent::comillas_inteligentes($v1),
+            parent::comillas_inteligentes($v2),
+            parent::comillas_inteligentes($v3),
+            parent::comillas_inteligentes($v4),
+            parent::comillas_inteligentes($v5)
+            );
+        $this->mysqli->query($consulta);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
     
     //*****************************************************************
     // MODIFICAR COMPROBANTES SERIES
@@ -48,6 +65,27 @@ class Comprobantes_series extends Conexion {
         $this->mysqli->query($consulta);
 
         header('Location: index.php?module=configuracion&page=comprobantes_series');
+    }
+
+    //*****************************************************************
+    // MODIFICAR COMPROBANTES SERIES
+    //*****************************************************************
+    public function update2($v1,$v2,$v3) {
+
+        $consulta = sprintf(
+            "UPDATE comprobantes_series SET
+            numero_actual = %s,
+            estado = %s
+            WHERE
+            idcomprobantes_series = %s;",
+            parent::comillas_inteligentes($v1),
+            parent::comillas_inteligentes($v2),
+            parent::comillas_inteligentes($v3)
+            );
+
+        $this->mysqli->query($consulta);
+
+        header('Location: ../../index.php?module=configuracion&page=series_correlativo');
     }
     
     //*****************************************************************
@@ -98,6 +136,25 @@ class Comprobantes_series extends Conexion {
         if (isset($data)) {
             return $data;
         }
+    }
+
+    //*****************************************************************
+    // CAMBIAR ESTADO SERIE COMPROBANTES
+    //*****************************************************************
+    public function cambiar_estado($estado,$id) {
+
+        $consulta = sprintf(
+            "UPDATE comprobantes_series SET
+            comprobantes_series.estado = %s
+            WHERE
+            comprobantes_series.idcomprobantes_series = %s;",
+            parent::comillas_inteligentes($estado),
+            parent::comillas_inteligentes($id)
+            );
+
+        $this->mysqli->query($consulta);
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
     
 }

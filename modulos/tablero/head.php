@@ -14,11 +14,13 @@ if (isset($principal)) {
 
   <!-- Site favicon -->
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+
   <!-- /site favicon -->
 
   <!-- Font Icon Styles -->
   <link rel="stylesheet" href="node_modules/flag-icon-css/css/flag-icon.min.css">
   <link rel="stylesheet" href="vendors/gaxon-icon/style.css">
+  <link href="assets/fontawesome-free-5.15.4/css/all.css" rel="stylesheet">
   <!-- /font icon Styles -->
 
   <!-- Perfect Scrollbar stylesheet -->
@@ -26,6 +28,7 @@ if (isset($principal)) {
   <!-- /perfect scrollbar stylesheet -->
 
   <!-- Load Styles -->
+
   <link rel="stylesheet" href="assets/css/lite-style-1.min.css">
   <link rel="stylesheet" href="assets/css/reloj.css">
   <!-- /load styles -->

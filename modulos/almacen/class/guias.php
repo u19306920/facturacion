@@ -490,6 +490,31 @@ class Guias extends Conexion {
             return $data;
         }
     }
+
+    //*****************************************************************
+    // ULTIMA GUIA
+    //*****************************************************************
+    public function ultima_guia($serie){
+        $consulta = sprintf("
+            SELECT
+            guias.numero_guia
+            FROM guias
+            WHERE guias.serie_guia = %s
+            ORDER BY guias.numero_guia DESC LIMIT 1;
+            ",
+            parent::comillas_inteligentes($serie)
+            );
+
+        $resultado = $this->mysqli->query($consulta);
+
+        while( $fila = $resultado->fetch_assoc() ){
+            $data[] = $fila;
+        }
+
+        if (isset($data)) {
+            return $data;
+        }
+    }
 }
 
 ?>

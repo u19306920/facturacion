@@ -74,17 +74,28 @@ if (isset($principal)) {
 
           <!-- Header Menu -->
           <ul class="dt-nav">
+            
             <li class="dt-nav__item dt-notification dropdown">
+              <?php
+                require_once('class/tablero.php');
+                $objPendiente = new Tablero();
+                $pendiente = $objPendiente->pendiente();
 
-              <!-- Dropdown Link -->
-              <a href="#" class="dt-nav__link dropdown-toggle no-arrow" data-toggle="dropdown"
-                 aria-haspopup="true" aria-expanded="false"> <i class="icon icon-notification icon-fw dt-icon-alert"></i>
-              </a>
-              <!-- /dropdown link -->
-
-              <!-- Dropdown Option -->
+                if ($pendiente[0]['pendiente']!=0) {
+                ?>
+                <a href="#" class="dt-nav__link dropdown-toggle no-arrow" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false"> <i class="icon icon-notification icon-fw dt-icon-alert" style="font-size: 24px;"></i>
+                   <div style="font-size: 18px; font-weight: bold; color: white; border-radius: 50%; background-color: #fd6565; width: 24px; height: 22px; text-align: center;">
+                    <?php  
+                      echo $pendiente[0]['pendiente'];
+                    ?>
+                   </div>
+                </a>
+                <?php
+                }
+              ?>
+              <!--
               <div class="dropdown-menu dropdown-menu-right dropdown-menu-media">
-                <!-- Dropdown Menu Header -->
                 <div class="dropdown-menu-header">
                   <h4 class="title">Notifications (9)</h4>
 
@@ -93,121 +104,72 @@ if (isset($principal)) {
                     <i class="icon icon-setting icon-lg text-light-gray"></i> </a>
                   </div>
                 </div>
-                <!-- /dropdown menu header -->
-
-                <!-- Dropdown Menu Body -->
+                
                 <div class="dropdown-menu-body ps-custom-scrollbar">
 
                   <div class="h-auto">
-                    <!-- Media -->
                     <a href="javascript:void(0)" class="media">
-
-                      <!-- Avatar -->
                       <img class="dt-avatar mr-3" src="assets/images/user02.png" alt="User">
-                      <!-- avatar -->
-
-                      <!-- Media Body -->
                       <span class="media-body">
-                    <span class="message">
-                      <span class="user-name">Stella Johnson</span> and <span class="user-name">Chris Harris</span>
-                      have birthdays today. Help them celebrate!
-                    </span>
-                    <span class="meta-date">8 hours ago</span>
-                  </span>
-                      <!-- /media body -->
-
+                        <span class="message">
+                          <span class="user-name">Stella Johnson</span> and <span class="user-name">Chris Harris</span> have birthdays today. Help them celebrate!
+                        </span>
+                        <span class="meta-date">8 hours ago</span>
+                      </span>
                     </a>
-                    <!-- /media -->
-
-                    <!-- Media -->
+                    
                     <a href="javascript:void(0)" class="media">
-
-                      <!-- Avatar -->
                       <img class="dt-avatar mr-3" src="assets/images/user02.png" alt="User">
-                      <!-- avatar -->
-
-                      <!-- Media Body -->
                       <span class="media-body">
-                    <span class="message">
-                      <span class="user-name">Jonathan Madano</span> commented on your post.
-                    </span>
-                    <span class="meta-date">9 hours ago</span>
-                  </span>
-                      <!-- /media body -->
-
+                        <span class="message">
+                          <span class="user-name">Jonathan Madano</span> commented on your post.
+                        </span>
+                        <span class="meta-date">9 hours ago</span>
+                      </span>
                     </a>
-                    <!-- /media -->
-
-                    <!-- Media -->
+                    
                     <a href="javascript:void(0)" class="media">
-
-                      <!-- Avatar -->
                       <img class="dt-avatar mr-3" src="assets/images/user02.png" alt="User">
-                      <!-- avatar -->
-
-                      <!-- Media Body -->
                       <span class="media-body">
-                    <span class="message">
-                      <span class="user-name">Chelsea Brown</span> sent a video recomendation.
-                    </span>
-                    <span class="meta-date">
-                      <i class="icon icon-menu-right text-primary icon-fw mr-1"></i>
-                      13 hours ago
-                    </span>
-                  </span>
-                      <!-- /media body -->
-
+                        <span class="message">
+                          <span class="user-name">Chelsea Brown</span> sent a video recomendation.
+                        </span>
+                        <span class="meta-date">
+                          <i class="icon icon-menu-right text-primary icon-fw mr-1"></i>
+                          13 hours ago
+                        </span>
+                      </span>
                     </a>
-                    <!-- /media -->
-
-                    <!-- Media -->
+                    
                     <a href="javascript:void(0)" class="media">
-
-                      <!-- Avatar -->
                       <img class="dt-avatar mr-3" src="assets/images/user02.png" alt="User">
-                      <!-- avatar -->
-
-                      <!-- Media Body -->
                       <span class="media-body">
-                    <span class="message">
-                      <span class="user-name">Alex Dolgove</span> and <span class="user-name">Chris Harris</span>
-                      like your post.
-                    </span>
-                    <span class="meta-date">
-                      <i class="icon icon-like text-light-blue icon-fw mr-1"></i>
-                      yesterday at 9:30
-                    </span>
-                  </span>
-                      <!-- /media body -->
-
+                        <span class="message">
+                          <span class="user-name">Alex Dolgove</span> and <span class="user-name">Chris Harris</span>
+                          like your post.
+                        </span>
+                        <span class="meta-date">
+                          <i class="icon icon-like text-light-blue icon-fw mr-1"></i>
+                          yesterday at 9:30
+                        </span>
+                      </span>
                     </a>
-                    <!-- /media -->
                   </div>
-
                 </div>
-                <!-- /dropdown menu body -->
-
-                <!-- Dropdown Menu Footer -->
                 <div class="dropdown-menu-footer">
                   <a href="javascript:void(0)" class="card-link"> See All <i class="icon icon-arrow-right icon-fw"></i>
                   </a>
                 </div>
-                <!-- /dropdown menu footer -->
               </div>
-              <!-- /dropdown option -->
-
+              -->
             </li>
 
+            <!--
             <li class="dt-nav__item dt-notification dropdown">
-
-              <!-- Dropdown Link -->
-              <a href="#" class="dt-nav__link dropdown-toggle no-arrow" data-toggle="dropdown"
-                 aria-haspopup="true" aria-expanded="false"> <i class="icon icon-chat-new icon-fw"></i> </a>
-              <!-- /dropdown link -->
-
-              <!-- Dropdown Option -->
+              <a href="#" class="dt-nav__link dropdown-toggle no-arrow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="icon icon-chat-new icon-fw"></i>
+              </a>
+              
               <div class="dropdown-menu dropdown-menu-right dropdown-menu-media">
-                <!-- Dropdown Menu Header -->
                 <div class="dropdown-menu-header">
                   <h4 class="title">Messages (6)</h4>
 
@@ -216,132 +178,83 @@ if (isset($principal)) {
                     <i class="icon icon-setting icon-lg text-light-gray"></i></a>
                   </div>
                 </div>
-                <!-- /dropdown menu header -->
-
-                <!-- Dropdown Menu Body -->
+                
                 <div class="dropdown-menu-body ps-custom-scrollbar">
 
                   <div class="h-auto">
-
-                    <!-- Media -->
                     <a href="javascript:void(0)" class="media">
-
-                      <!-- Avatar -->
                       <img class="dt-avatar mr-3" src="assets/images/user02.png" alt="User">
-                      <!-- avatar -->
-
-                      <!-- Media Body -->
                       <span class="media-body text-truncate">
-                    <span class="user-name mb-1">Chris Mathew</span>
-                    <span class="message text-light-gray text-truncate">Okay.. I will be waiting for your...</span>
-                  </span>
-                      <!-- /media body -->
-
-                      <span class="action-area h-100 min-w-80 text-right">
-                      <span class="meta-date mb-1">8 hours ago</span>
-                        <!-- Toggle Button -->
-                      <span class="toggle-button" data-toggle="tooltip" data-placement="left" title="Mark as read">
-                        <span class="show"><i class="icon icon-circle-o icon-fw f-10 text-light-gray"></i></span>
-                        <span class="hide"><i class="icon icon-circle icon-fw f-10 text-light-gray"></i></span>
+                        <span class="user-name mb-1">Chris Mathew</span>
+                        <span class="message text-light-gray text-truncate">Okay.. I will be waiting for your...</span>
                       </span>
-                        <!-- /toggle button -->
-                    </span> </a>
-                    <!-- /media -->
-
-                    <!-- Media -->
+                      <span class="action-area h-100 min-w-80 text-right">
+                        <span class="meta-date mb-1">8 hours ago</span>
+                        <span class="toggle-button" data-toggle="tooltip" data-placement="left" title="Mark as read">
+                          <span class="show"><i class="icon icon-circle-o icon-fw f-10 text-light-gray"></i></span>
+                          <span class="hide"><i class="icon icon-circle icon-fw f-10 text-light-gray"></i></span>
+                        </span>
+                      </span>
+                    </a>
+                    
                     <a href="javascript:void(0)" class="media">
-
-                      <!-- Avatar -->
                       <img class="dt-avatar mr-3" src="assets/images/user02.png" alt="User">
-                      <!-- avatar -->
-
-                      <!-- Media Body -->
                       <span class="media-body text-truncate">
-                    <span class="user-name mb-1">Alia Joseph</span>
-                    <span class="message text-light-gray text-truncate">
-                      Alia Joseph just joined Messenger! Be the first to send a welcome message or sticker.
-                    </span>
-                  </span>
-                      <!-- /media body -->
-
-                      <span class="action-area h-100 min-w-80 text-right">
-                    <span class="meta-date mb-1">9 hours ago</span>
-                        <!-- Toggle Button -->
-                      <span class="toggle-button" data-toggle="tooltip" data-placement="left" title="Mark as read">
-                        <span class="show"><i class="icon icon-circle-o icon-fw f-10 text-light-gray"></i></span>
-                        <span class="hide"><i class="icon icon-circle icon-fw f-10 text-light-gray"></i></span>
+                        <span class="user-name mb-1">Alia Joseph</span>
+                        <span class="message text-light-gray text-truncate">
+                          Alia Joseph just joined Messenger! Be the first to send a welcome message or sticker.
+                        </span>
                       </span>
-                        <!-- /toggle button -->
-                  </span> </a>
-                    <!-- /media -->
-
-                    <!-- Media -->
+                      <span class="action-area h-100 min-w-80 text-right">
+                        <span class="meta-date mb-1">9 hours ago</span>
+                          <span class="toggle-button" data-toggle="tooltip" data-placement="left" title="Mark as read">
+                            <span class="show"><i class="icon icon-circle-o icon-fw f-10 text-light-gray"></i></span>
+                            <span class="hide"><i class="icon icon-circle icon-fw f-10 text-light-gray"></i></span>
+                          </span>
+                      
+                        </span>
+                      </a>
+                    
                     <a href="javascript:void(0)" class="media">
-
-                      <!-- Avatar -->
                       <img class="dt-avatar mr-3" src="assets/images/user02.png" alt="User">
-                      <!-- avatar -->
-
-                      <!-- Media Body -->
                       <span class="media-body text-truncate">
-                    <span class="user-name mb-1">Joshua Brian</span>
-                    <span class="message text-light-gray text-truncate">
-                      Alex will explain you how to keep the HTML structure and all that.
-                    </span>
-                  </span>
-                      <!-- /media body -->
-
-                      <span class="action-area h-100 min-w-80 text-right">
-                    <span class="meta-date mb-1">12 hours ago</span>
-                        <!-- Toggle Button -->
-                      <span class="toggle-button" data-toggle="tooltip" data-placement="left" title="Mark as read">
-                        <span class="show"><i class="icon icon-circle-o icon-fw f-10 text-light-gray"></i></span>
-                        <span class="hide"><i class="icon icon-circle icon-fw f-10 text-light-gray"></i></span>
+                        <span class="user-name mb-1">Joshua Brian</span>
+                        <span class="message text-light-gray text-truncate">
+                          Alex will explain you how to keep the HTML structure and all that.
+                        </span>
                       </span>
-                        <!-- /toggle button -->
-                  </span> </a>
-                    <!-- /media -->
-
-                    <!-- Media -->
+                      <span class="action-area h-100 min-w-80 text-right">
+                        <span class="meta-date mb-1">12 hours ago</span>
+                          <span class="toggle-button" data-toggle="tooltip" data-placement="left" title="Mark as read">
+                            <span class="show"><i class="icon icon-circle-o icon-fw f-10 text-light-gray"></i></span>
+                            <span class="hide"><i class="icon icon-circle icon-fw f-10 text-light-gray"></i></span>
+                          </span>
+                      </span>
+                    </a>
+                    
                     <a href="javascript:void(0)" class="media">
-
-                      <!-- Avatar -->
                       <img class="dt-avatar mr-3" src="assets/images/user02.png" alt="User">
-                      <!-- avatar -->
-
-                      <!-- Media Body -->
                       <span class="media-body text-truncate">
-                    <span class="user-name mb-1">Domnic Brown</span>
-                    <span class="message text-light-gray text-truncate">Okay.. I will be waiting for your...</span>
-                  </span>
-                      <!-- /media body -->
-
-                      <span class="action-area h-100 min-w-80 text-right">
-                    <span class="meta-date mb-1">yesterday</span>
-                        <!-- Toggle Button -->
-                      <span class="toggle-button" data-toggle="tooltip" data-placement="left" title="Mark as read">
-                        <span class="show"><i class="icon icon-circle-o icon-fw f-10 text-light-gray"></i></span>
-                        <span class="hide"><i class="icon icon-circle icon-fw f-10 text-light-gray"></i></span>
+                        <span class="user-name mb-1">Domnic Brown</span>
+                        <span class="message text-light-gray text-truncate">Okay.. I will be waiting for your...</span>
                       </span>
-                        <!-- /toggle button -->
-                  </span> </a>
-                    <!-- /media -->
-
+                      <span class="action-area h-100 min-w-80 text-right">
+                        <span class="meta-date mb-1">yesterday</span>
+                          <span class="toggle-button" data-toggle="tooltip" data-placement="left" title="Mark as read">
+                            <span class="show"><i class="icon icon-circle-o icon-fw f-10 text-light-gray"></i></span>
+                            <span class="hide"><i class="icon icon-circle icon-fw f-10 text-light-gray"></i></span>
+                          </span>
+                      </span>
+                    </a>
                   </div>
-
                 </div>
-                <!-- /dropdown menu body -->
-
-                <!-- Dropdown Menu Footer -->
                 <div class="dropdown-menu-footer">
                   <a href="javascript:void(0)" class="card-link"> See All <i class="icon icon-arrow-right icon-fw"></i>
                   </a>
                 </div>
-                <!-- /dropdown menu footer -->
               </div>
-              <!-- /dropdown option -->
-
             </li>
+            -->
           </ul>
           <!-- /header menu -->
 

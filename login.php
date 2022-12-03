@@ -24,6 +24,7 @@ if(isset($_POST['Login'])){
     $_SESSION["token"]=$login[0]['token'];
     $_SESSION["telefono"]=$login[0]['telefono'];
     $_SESSION["idempresas"]=$login[0]['idempresas'];
+    $_SESSION["estado"]=$login[0]['estado'];
     $_SESSION["sesion"]=1;
     $_SESSION["url"]=$url;
     $_SESSION["token"]=$login[0]['token'];
@@ -32,7 +33,7 @@ if(isset($_POST['Login'])){
     header('Location: index.php');
   }
   else{
-    echo "Usuario o Clave Erronea. Intente otra vez.";
+    header('Location: login.php?error=1');
   }
 }
 elseif(isset($_SESSION['sesion'])){
@@ -226,6 +227,7 @@ else{
     </script>
 </head>
 <body>
+  
   <form class="login-form" method="POST" action="">
     <p class="login-text">Facturación<br>Electrónica
       <span class="fa-stack fa-lg">
@@ -235,9 +237,17 @@ else{
     </p>
     <input type="text" name="usuario" class="login-username" autofocus="true" required="true" placeholder="Usuario" />
     <input type="password" name="password" class="login-password" required="true" placeholder="Contraseña" />
+    <?php
+    if (isset($_GET['error'])) {
+      ?>
+      <div style="color: red; font-size: 12px; font-weight: bold; text-align: center">
+        Contraseña erronea
+      </div>
+      <?php
+    }
+    ?>
     <input type="submit" name="Login" value="Entrar" class="login-submit" />
   </form>
-<a href="#" class="login-forgot-pass">¿Oldivaste tu contraseña?</a>
 <div class="underlay-photo"></div>
 <div class="underlay-black"></div> 
 </body>

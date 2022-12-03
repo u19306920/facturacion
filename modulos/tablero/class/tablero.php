@@ -304,5 +304,22 @@ class Tablero extends Conexion {
             return $data;
         }
     }
+
+    //*****************************************************************
+    // PENDIENTES DE ENVIO
+    //*****************************************************************
+    public function pendiente(){
+        $consulta = sprintf("SELECT COUNT(comprobantes.idcomprobantes) AS pendiente FROM comprobantes WHERE comprobantes.estado = '01';");
+
+        $resultado = $this->mysqli->query($consulta);
+
+        while( $fila = $resultado->fetch_assoc() ){
+            $data[] = $fila;
+        }
+
+        if (isset($data)) {
+            return $data;
+        }
+    }
 }
 ?>

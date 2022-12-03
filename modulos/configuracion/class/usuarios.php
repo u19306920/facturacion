@@ -30,15 +30,16 @@ class Usuarios extends Conexion {
     //*****************************************************************
     // AGREGAR USUARIO
     //*****************************************************************
-    public function add($v1,$v2,$v3,$v4,$v5) {
+    public function add($v1,$v2,$v3,$v4,$v5,$v6) {
 
         $consulta = sprintf(
-            "INSERT INTO usuarios values(null, %s, %s, %s, %s, %s, now(), now(), '1');",
+            "INSERT INTO usuarios values(null, %s, %s, %s, %s, %s, 'gSrXVdDzYAfNZiajWsohZkebGKtmfBuQ635MwUdbUzByh2wHNG', now(), now(), %s);",
             parent::comillas_inteligentes($v1),
             parent::comillas_inteligentes($v2),
             parent::comillas_inteligentes($v3),
             parent::comillas_inteligentes($v4),
-            parent::comillas_inteligentes($v5)
+            parent::comillas_inteligentes($v5),
+            parent::comillas_inteligentes($v6)
             );
         $this->mysqli->query($consulta);
         header('Location: ' . $_SERVER['HTTP_REFERER']);
