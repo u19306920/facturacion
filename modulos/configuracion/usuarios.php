@@ -1,9 +1,5 @@
 <?php
-if ($_SESSION['estado']!=1) {
-  //print_r($_SESSION);
-  require('modulos/tablero/denegado.php');
-}
-else {
+
   if (isset($principal)) {
     require('class/usuarios.php');
   ?>
@@ -354,5 +350,5 @@ else {
   else{
     header('Location: ../../login.php');
   }
-}
+
 ?>
