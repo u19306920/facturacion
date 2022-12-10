@@ -1,7 +1,13 @@
 <?php
 if ($_SESSION['estado']!=1 and $_SESSION['estado']!=3 and $_SESSION['estado']!=4) {
   //print_r($_SESSION);
-  require('modulos/tablero/denegado.php');
+  if (isset($_GET['page']) and $_GET['page']=="cambiar_ok") {
+    require('modulos/tablero/cambiar_ok.php');
+  }
+  else{
+    require('modulos/tablero/denegado.php');  
+  }
+  
 }
 else {
   //print_r($_SESSION);

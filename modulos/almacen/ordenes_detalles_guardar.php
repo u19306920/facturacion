@@ -5,7 +5,7 @@ if ($_SESSION['sesion']!=1) {
 }
 
 require("class/reconexion.php");
-print_r($_POST);
+//print_r($_POST);
 
 $sql = "INSERT INTO items values (null, null,'".$_POST['codigo']."' , '".$_POST['descripcion']."','".$_POST['um']."', '1', '1', now());";
 

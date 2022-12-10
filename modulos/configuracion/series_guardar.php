@@ -12,7 +12,7 @@ else{
 $estado=1;
 
 require('class/comprobantes_series.php');
-print_r($_POST);
+//print_r($_POST);
 $objSeries = new Comprobantes_series();
 $Series = $objSeries->add($_POST['tipo'],$_POST['serie'],$_POST['correlativo'],$expo,$estado);
 

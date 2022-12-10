@@ -29,9 +29,9 @@ if(!empty($_POST)){
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
 	else{
-		print_r($_POST);
+		//print_r($_POST);
 	}
 }
-print_r($_POST);
+//print_r($_POST);
 //print_r($carro_anticipo);
 ?>

@@ -5,7 +5,7 @@ if ($_SESSION['sesion']!=1) {
 }
 
 require('class/usuarios.php');
-print_r($_POST);
+//print_r($_POST);
 $objUsuarios = new Usuarios();
 $usuario = $objUsuarios->add($_POST['usuario'],$_POST['clave'],$_POST['nombres'],$_POST['apellidos'],$_POST['dni'],$_POST['perfil']);
 

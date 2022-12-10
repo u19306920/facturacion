@@ -8,15 +8,16 @@ echo "</pre>";
 if(isset($_POST['Login'])){
   require('config/config.php');
   require('modulos/configuracion/class/usuarios.php');
+  $clave = md5($_POST['password']);
   $objUsuarios = new Usuarios();
-  $login=$objUsuarios->usuarioLogin($_POST['usuario'],$_POST['password']);
+  $login=$objUsuarios->usuarioLogin($_POST['usuario'],$clave);
 /*
   echo "<pre>";
   print_r($login);
   //print_r($_SESSION);
   echo "</pre>";
 */
-  if($login[0]['usuario']==$_POST['usuario'] and $login[0]['password']==$_POST['password']){
+  if($login[0]['usuario']==$_POST['usuario'] and $login[0]['password']==$clave){
     //echo "ok<br>";
     $_SESSION["idusuarios"]=$login[0]['idusuarios'];
     $_SESSION["dni"]=$login[0]['dni'];

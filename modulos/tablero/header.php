@@ -83,7 +83,7 @@ if (isset($principal)) {
 
                 if ($pendiente[0]['pendiente']!=0) {
                 ?>
-                <a href="#" class="dt-nav__link dropdown-toggle no-arrow" data-toggle="dropdown"
+                <a href="index.php?module=ventas&page=comprobantes" class="dt-nav__link dropdown-toggle no-arrow" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false"> <i class="icon icon-notification icon-fw dt-icon-alert" style="font-size: 24px;"></i>
                    <div style="font-size: 18px; font-weight: bold; color: white; border-radius: 50%; background-color: #fd6565; width: 24px; height: 22px; text-align: center;">
                     <?php  
@@ -308,7 +308,8 @@ if (isset($principal)) {
                 </div>
                 <!--<a class="dropdown-item" href="javascript:void(0)"> <i class="icon icon-user-o icon-fw mr-2 mr-sm-1"></i>Cuenta </a>-->
                 <!--<a class="dropdown-item" href="javascript:void(0)"> <i class="icon icon-setting icon-fw mr-2 mr-sm-1"></i>Configuración </a>-->
-                <a class="dropdown-item" href="logout.php"> <i class="icon icon-edit icon-fw mr-2 mr-sm-1"></i>Salir </a>
+                <a class="dropdown-item" href="index.php?module=configuracion&page=cambiar"> <i class="fas fa-key"></i> Cambiar contraseña</a>
+                <a class="dropdown-item" href="logout.php"> <i class="fas fa-sign-out-alt"></i> Salir </a>
               </div>
               <!-- /dropdown option -->
 

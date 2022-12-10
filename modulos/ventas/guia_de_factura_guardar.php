@@ -46,9 +46,11 @@ $objGuia->addGF(
 
 //Actualizamos ordenes_detalles_guia_factura con idguia buscado en guias con idcomprobantes
 $idguia = $objGuia->guiaPorIdF($_POST['idcomprobantes']);
+/*
 echo "<pre>";
 print_r($idguia);
 echo "</pre>";
+*/
 $idguias = $idguia[0]['idguias'];
 
 $amarre = $objGuia->amarreGC($idguias,$_POST['idcomprobantes']);

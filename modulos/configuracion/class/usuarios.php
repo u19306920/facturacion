@@ -67,7 +67,50 @@ class Usuarios extends Conexion {
 
         $this->mysqli->query($consulta);
 
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        header('Location: ../../index.php?module=configuracion&page=usuarios');
+    }
+    //*****************************************************************
+    // MODIFICAR USUARIOS2
+    //*****************************************************************
+    public function update2($v1,$v2,$v3,$v4) {
+
+        $consulta = sprintf(
+            "UPDATE usuarios SET
+            usuario = %s,
+            token = %s,
+            actualizado = now(),
+            estado = %s
+            WHERE
+            idusuarios = %s;",
+            parent::comillas_inteligentes($v1),
+            parent::comillas_inteligentes($v2),
+            parent::comillas_inteligentes($v3),
+            parent::comillas_inteligentes($v4)
+            );
+
+        $this->mysqli->query($consulta);
+
+        header('Location: ../../index.php?module=configuracion&page=usuarios');
+    }
+
+    //*****************************************************************
+    // MODIFICAR USUARIOS3
+    //*****************************************************************
+    public function update3($v1,$v2) {
+
+        $consulta = sprintf(
+            "UPDATE usuarios SET
+            password = %s,
+            actualizado = now()
+            WHERE
+            idusuarios = %s;",
+            parent::comillas_inteligentes($v1),
+            parent::comillas_inteligentes($v2)
+            );
+
+        $this->mysqli->query($consulta);
+
+        header('Location: ../../index.php?module=tablero&page=cambiar_ok');
     }
     //*****************************************************************
     // ELIMINAR USUARIOS

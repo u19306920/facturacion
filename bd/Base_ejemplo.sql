@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Versión del servidor:         5.7.33 - MySQL Community Server (GPL)
--- SO del servidor:              Win64
+-- Host:                         209.126.1.34
+-- Versión del servidor:         10.3.37-MariaDB-0ubuntu0.20.04.1 - Ubuntu 20.04
+-- SO del servidor:              debian-linux-gnu
 -- HeidiSQL Versión:             11.2.0.6213
 -- --------------------------------------------------------
 
@@ -15,11 +15,11 @@
 -- Volcando estructura para tabla facturacion.anticipos_aplicados
 CREATE TABLE IF NOT EXISTS `anticipos_aplicados` (
   `idanticipos_aplicados` int(11) NOT NULL AUTO_INCREMENT,
-  `idcomprobantes` int(11) NOT NULL DEFAULT '0',
-  `idanticipos` int(11) NOT NULL DEFAULT '0',
-  `monto_base` double NOT NULL DEFAULT '0',
+  `idcomprobantes` int(11) NOT NULL DEFAULT 0,
+  `idanticipos` int(11) NOT NULL DEFAULT 0,
+  `monto_base` double NOT NULL DEFAULT 0,
   PRIMARY KEY (`idanticipos_aplicados`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Volcando datos para la tabla facturacion.anticipos_aplicados: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `anticipos_aplicados` DISABLE KEYS */;
@@ -56,10 +56,10 @@ CREATE TABLE IF NOT EXISTS `comprobantes` (
   `anticipo` int(1) DEFAULT NULL,
   `saldo_anticipo` double DEFAULT NULL,
   `forma_de_pago` int(2) unsigned zerofill DEFAULT NULL,
-  `observaciones` text,
+  `observaciones` text DEFAULT NULL,
   `vendedor` varchar(60) DEFAULT NULL,
   `caja` varchar(60) DEFAULT NULL,
-  `informacion_adicional` text,
+  `informacion_adicional` text DEFAULT NULL,
   `leyendas_valor` varchar(60) DEFAULT NULL,
   `creado` datetime DEFAULT NULL,
   `actualizado` datetime DEFAULT NULL,
@@ -70,9 +70,9 @@ CREATE TABLE IF NOT EXISTS `comprobantes` (
   KEY `identidades` (`identidades`),
   CONSTRAINT `fk_entidades_comprobantes` FOREIGN KEY (`identidades`) REFERENCES `entidades` (`identidades`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_tipo_cambios_comprobantes` FOREIGN KEY (`idtipo_cambio`) REFERENCES `tipo_cambio` (`idtipo_cambio`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Volcando datos para la tabla facturacion.comprobantes: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla facturacion.comprobantes: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `comprobantes` DISABLE KEYS */;
 INSERT INTO `comprobantes` (`idcomprobantes`, `serie_documento`, `numero_documento`, `comprobante`, `fecha_de_emision`, `hora_de_emision`, `fecha_de_vencimiento`, `codigo_tipo_operacion`, `codigo_tipo_documento`, `codigo_tipo_moneda`, `numero_orden_de_compra`, `idtipo_cambio`, `identidades`, `total_exportacion`, `total_operaciones_gravadas`, `total_operaciones_inafectas`, `total_operaciones_exoneradas`, `total_operaciones_gratuitas`, `total_igv_operaciones_gratuitas`, `total_impuestos_bolsa_plastica`, `total_igv`, `total_impuestos`, `total_valor`, `total_venta`, `total_pendiente_de_pago`, `codigo_condicion_de_pago`, `anticipo`, `saldo_anticipo`, `forma_de_pago`, `observaciones`, `vendedor`, `caja`, `informacion_adicional`, `leyendas_valor`, `creado`, `actualizado`, `estado`) VALUES
 	(7, 'F001', '378', 'F001-00000378', '2022-10-17', '05:03:17', '2022-12-10', 0101, 01, 'USD', 'OC2024-2021', 261, 8, 0, 195, 0, 0, 0, 0, 0, 35.1, 35.1, 195, 230.1, 230.1, 02, 0, 0, 11, '636abb54-838f-4a03-b57e-38f3eb8af1b6', '', '', 'PT01-2022-000001', '', '2022-12-03 17:03:17', '2022-12-03 17:03:33', 05),
@@ -82,7 +82,8 @@ INSERT INTO `comprobantes` (`idcomprobantes`, `serie_documento`, `numero_documen
 	(11, 'F001', '384', 'F001-00000384', '2022-11-22', '06:47:19', '2023-01-02', 0101, 01, 'PEN', 'OC2028-2021', 314, 4, 0, 320.45, 0, 0, 0, 0, 0, 57.68, 57.68, 320.45, 378.13, 378.13, 02, 0, 0, 13, 'f5b85d92-c685-488a-9673-ed687d8cde38', '', '', 'PT01-2022-000005', '', '2022-12-03 18:47:19', '2022-12-03 18:49:09', 05),
 	(12, 'F001', '385', 'F001-00000385', '2022-12-01', '07:03:41', '2022-12-01', 0101, 01, 'USD', 'OC2029-2021', 279, 7, 0, 186, 0, 0, 0, 0, 0, 33.48, 33.48, 186, 219.48, 0, 01, 0, 0, 10, 'ca85d994-8dd9-41be-819e-25be19a9836d', '', '', 'PT01-2022-000006', '', '2022-12-03 19:03:41', '2022-12-03 19:03:52', 05),
 	(13, 'F001', '386', 'F001-00000386', '2022-12-02', '07:10:05', '2022-12-18', 0101, 01, 'PEN', 'OC2030-2021', 324, 6, 0, 455, 0, 0, 0, 0, 0, 81.9, 81.9, 455, 536.9, 536.9, 02, 0, 0, 12, 'cebfc4dc-c32a-45f4-aee9-453fdf7b7149', '', '', 'PT01-2022-000007', '', '2022-12-03 19:10:05', '2022-12-03 19:10:16', 05),
-	(14, 'F001', '387', 'F001-00000387', '2022-12-03', '07:10:52', '2022-12-18', 0101, 01, 'PEN', 'OC2030-2021', 279, 6, 0, 455, 0, 0, 0, 0, 0, 81.9, 81.9, 455, 536.9, 536.9, 02, 0, 0, 12, '7d0c330a-0139-409e-a511-cb52cc277449', '', '', 'PT01-2022-000007', '', '2022-12-03 19:10:52', '2022-12-03 19:12:05', 05);
+	(14, 'F001', '387', 'F001-00000387', '2022-12-03', '07:10:52', '2022-12-18', 0101, 01, 'PEN', 'OC2030-2021', 279, 6, 0, 455, 0, 0, 0, 0, 0, 81.9, 81.9, 455, 536.9, 536.9, 02, 0, 0, 12, '7d0c330a-0139-409e-a511-cb52cc277449', '', '', 'PT01-2022-000007', '', '2022-12-03 19:10:52', '2022-12-03 19:12:05', 05),
+	(15, 'F001', '388', 'F001-00000388', '2022-12-03', '08:03:16', '2023-01-02', 0101, 01, 'USD', 'OC1258', 279, 9, 0, 137.5, 0, 0, 0, 0, 0, 24.75, 24.75, 137.5, 162.25, 162.25, 02, 0, 0, 08, 'a7f533c0-adf6-4b56-b653-448752ca9dd4', '', '', 'PT01-2022-000008', '', '2022-12-03 20:03:16', '2022-12-03 20:03:35', 01);
 /*!40000 ALTER TABLE `comprobantes` ENABLE KEYS */;
 
 -- Volcando estructura para tabla facturacion.comprobantes_cargos
@@ -98,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `comprobantes_cargos` (
   PRIMARY KEY (`idcomprobantes_cargos`),
   KEY `idcomprobantes` (`idcomprobantes`),
   CONSTRAINT `fk_comprobantes_cargos_comprobantes` FOREIGN KEY (`idcomprobantes`) REFERENCES `comprobantes` (`idcomprobantes`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Volcando datos para la tabla facturacion.comprobantes_cargos: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `comprobantes_cargos` DISABLE KEYS */;
@@ -117,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `comprobantes_descuentos` (
   PRIMARY KEY (`idcomprobantes_descuentos`),
   KEY `idcomprobantes` (`idcomprobantes`),
   CONSTRAINT `fk_comprobantes_descuentos_comprobantes` FOREIGN KEY (`idcomprobantes`) REFERENCES `comprobantes` (`idcomprobantes`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Volcando datos para la tabla facturacion.comprobantes_descuentos: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `comprobantes_descuentos` DISABLE KEYS */;
@@ -126,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `comprobantes_descuentos` (
 -- Volcando estructura para tabla facturacion.comprobantes_detalles
 CREATE TABLE IF NOT EXISTS `comprobantes_detalles` (
   `idcomprobantes_detalles` int(11) NOT NULL AUTO_INCREMENT,
-  `descripcion` text,
+  `descripcion` text DEFAULT NULL,
   `cantidad` double DEFAULT NULL,
   `um` varchar(4) DEFAULT NULL,
   `valor_unitario` double DEFAULT NULL,
@@ -136,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `comprobantes_detalles` (
   KEY `fk_um` (`um`) USING BTREE,
   CONSTRAINT `fk_idcomprobantes` FOREIGN KEY (`idcomprobantes`) REFERENCES `comprobantes` (`idcomprobantes`),
   CONSTRAINT `fk_um` FOREIGN KEY (`um`) REFERENCES `um` (`simbolo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Volcando datos para la tabla facturacion.comprobantes_detalles: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `comprobantes_detalles` DISABLE KEYS */;
@@ -157,12 +158,12 @@ CREATE TABLE IF NOT EXISTS `comprobantes_detracciones` (
   `detraccion_valor_ref_servicio_t` double DEFAULT NULL,
   `detraccion_valor_carga_e` double DEFAULT NULL,
   `detraccion_valor_carga_u` double DEFAULT NULL,
-  `detraccion_detalle_viaje` text,
+  `detraccion_detalle_viaje` text DEFAULT NULL,
   `idcomprobantes` int(11) DEFAULT NULL,
   PRIMARY KEY (`idcomprobantes_detracciones`),
   KEY `idcomprobantes` (`idcomprobantes`),
   CONSTRAINT `fk_comprobantes_detracciones_comprobantes` FOREIGN KEY (`idcomprobantes`) REFERENCES `comprobantes` (`idcomprobantes`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Volcando datos para la tabla facturacion.comprobantes_detracciones: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `comprobantes_detracciones` DISABLE KEYS */;
@@ -179,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `comprobantes_retenciones` (
   PRIMARY KEY (`idcomprobantes_retenciones`),
   KEY `idcomprobantes` (`idcomprobantes`),
   CONSTRAINT `fk_comprobantes_retenciones_comprobantes` FOREIGN KEY (`idcomprobantes`) REFERENCES `comprobantes` (`idcomprobantes`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Volcando datos para la tabla facturacion.comprobantes_retenciones: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `comprobantes_retenciones` DISABLE KEYS */;
@@ -188,19 +189,19 @@ CREATE TABLE IF NOT EXISTS `comprobantes_retenciones` (
 -- Volcando estructura para tabla facturacion.comprobantes_series
 CREATE TABLE IF NOT EXISTS `comprobantes_series` (
   `idcomprobantes_series` int(11) NOT NULL AUTO_INCREMENT,
-  `tipo_documento` int(2) unsigned zerofill DEFAULT '00',
+  `tipo_documento` int(2) unsigned zerofill DEFAULT 00,
   `serie_documento` varchar(4) DEFAULT NULL,
   `numero_actual` int(11) DEFAULT NULL,
   `exportacion` int(1) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
   PRIMARY KEY (`idcomprobantes_series`),
   UNIQUE KEY `serie_documento` (`serie_documento`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Volcando datos para la tabla facturacion.comprobantes_series: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `comprobantes_series` DISABLE KEYS */;
 INSERT INTO `comprobantes_series` (`idcomprobantes_series`, `tipo_documento`, `serie_documento`, `numero_actual`, `exportacion`, `estado`) VALUES
-	(1, 01, 'F001', 388, 0, 1),
+	(1, 01, 'F001', 389, 0, 1),
 	(2, 01, 'F002', 1, 0, 1),
 	(3, 01, 'F003', 55, 1, 1),
 	(5, 03, 'B001', 18, 0, 1),
@@ -219,9 +220,9 @@ CREATE TABLE IF NOT EXISTS `conductores` (
   PRIMARY KEY (`idconductores`,`idtransportistas`),
   KEY `fk_conductores_transportistas1_idx` (`idtransportistas`),
   CONSTRAINT `fk_conductores_transportistas1` FOREIGN KEY (`idtransportistas`) REFERENCES `transportistas` (`idtransportistas`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Volcando datos para la tabla facturacion.conductores: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla facturacion.conductores: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `conductores` DISABLE KEYS */;
 INSERT INTO `conductores` (`idconductores`, `nombres`, `licencia`, `estado`, `idtransportistas`, `actualizado`) VALUES
 	(2, 'JUAN MEZA', 'Q12345678', 1, 2, '2022-10-29 19:18:20'),
@@ -234,13 +235,13 @@ CREATE TABLE IF NOT EXISTS `contactos` (
   `nombres_apellidos` varchar(60) NOT NULL,
   `correo` varchar(60) NOT NULL DEFAULT '0',
   `telefono` varchar(20) NOT NULL DEFAULT '0',
-  `estado` int(1) NOT NULL DEFAULT '0',
+  `estado` int(1) NOT NULL DEFAULT 0,
   `identidades` int(11) NOT NULL,
   `actualizado` datetime NOT NULL,
   PRIMARY KEY (`idcontactos`,`identidades`) USING BTREE,
   KEY `FK_contactos_entidades` (`identidades`),
   CONSTRAINT `FK_contactos_entidades` FOREIGN KEY (`identidades`) REFERENCES `entidades` (`identidades`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Volcando datos para la tabla facturacion.contactos: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `contactos` DISABLE KEYS */;
@@ -259,9 +260,9 @@ CREATE TABLE IF NOT EXISTS `direcciones` (
   PRIMARY KEY (`iddirecciones`,`identidades`),
   KEY `fk_direcciones_entidades1_idx` (`identidades`),
   CONSTRAINT `fk_direcciones_entidades1` FOREIGN KEY (`identidades`) REFERENCES `entidades` (`identidades`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Volcando datos para la tabla facturacion.direcciones: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla facturacion.direcciones: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `direcciones` DISABLE KEYS */;
 INSERT INTO `direcciones` (`iddirecciones`, `direccion`, `ubigeo`, `estado`, `identidades`, `actualizado`) VALUES
 	(1, 'JR. SAN PABLO 185 - LIMA - Lima - Miraflores', '150122', 1, 4, '2022-10-15 20:37:03'),
@@ -273,9 +274,9 @@ INSERT INTO `direcciones` (`iddirecciones`, `direccion`, `ubigeo`, `estado`, `id
 -- Volcando estructura para tabla facturacion.empresa
 CREATE TABLE IF NOT EXISTS `empresa` (
   `idempresa` int(11) NOT NULL AUTO_INCREMENT,
-  `razon_social` varchar(240) COLLATE utf32_spanish2_ci NOT NULL DEFAULT '0',
-  `ruc` int(11) NOT NULL DEFAULT '0',
-  `dom_fiscal` text COLLATE utf32_spanish2_ci NOT NULL,
+  `razon_social` varchar(240) NOT NULL DEFAULT '0',
+  `ruc` int(11) NOT NULL DEFAULT 0,
+  `dom_fiscal` text NOT NULL,
   PRIMARY KEY (`idempresa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish2_ci;
 
@@ -286,10 +287,10 @@ CREATE TABLE IF NOT EXISTS `empresa` (
 -- Volcando estructura para tabla facturacion.empresa_locales
 CREATE TABLE IF NOT EXISTS `empresa_locales` (
   `idempresa_locales` int(11) NOT NULL AUTO_INCREMENT,
-  `local` varchar(120) COLLATE utf32_spanish2_ci NOT NULL DEFAULT '0',
-  `direccion` text COLLATE utf32_spanish2_ci NOT NULL,
-  `estado` int(11) NOT NULL DEFAULT '0',
-  `idempresa` int(11) NOT NULL DEFAULT '0',
+  `local` varchar(120) NOT NULL DEFAULT '0',
+  `direccion` text NOT NULL,
+  `estado` int(11) NOT NULL DEFAULT 0,
+  `idempresa` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`idempresa_locales`),
   KEY `idempresa` (`idempresa`),
   CONSTRAINT `fk_empresa_locales` FOREIGN KEY (`idempresa`) REFERENCES `empresa` (`idempresa`)
@@ -317,16 +318,18 @@ CREATE TABLE IF NOT EXISTS `entidades` (
   `actualizado` datetime DEFAULT NULL,
   PRIMARY KEY (`identidades`),
   UNIQUE KEY `ruc_dni_UNIQUE` (`ruc_dni`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Volcando datos para la tabla facturacion.entidades: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla facturacion.entidades: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `entidades` DISABLE KEYS */;
 INSERT INTO `entidades` (`identidades`, `tipo_documento`, `ruc_dni`, `razon_social_nombres`, `cliente`, `proveedor`, `codigo_pais`, `ubigeo`, `direccion_fiscal`, `correo`, `telefono`, `estado`, `condicion`, `actualizado`) VALUES
 	(4, '6', '20607713872', 'INDA HAUS E.I.R.L.', 1, 0, 'PE', 150140, 'JR. MONTERREY 485 DPTO. 601 URB. CHACARILLA DEL ESTANQUE ', '', '', 'ACTIVO', 'HABIDO', '2022-10-22 21:15:21'),
 	(5, '6', '10095872579', 'VILLAVERDE MEDRANO HUGO', 1, 0, 'PE', 150133, 'SECTOR LEONCIO PRADO MZA. U-5 LOTE. 17 URB. PAMPLONA ALTA', '', '', 'ACTIVO', 'HABIDO', '2022-10-14 20:45:21'),
 	(6, '6', '20607714194', 'NEMECYS S.A.C.', 1, 0, 'PE', 150119, 'PANAMERICANA SUR KM. 24.6 MZ. G LT. 2 ASC. DE POSESIONARIOS PLAYA SA ', '', '', 'ACTIVO', 'HABIDO', '2022-10-22 21:16:03'),
 	(7, '6', '20101936300', 'FERRI PERN S R LTDA', 1, 0, 'PE', 150101, 'JR. ANTONIO DE ELIZALDE NRO. 839', '', '', 'ACTIVO', 'HABIDO', '2022-10-22 19:13:33'),
-	(8, '6', '20600453271', 'DATASERVER PERU S.A.C.', 1, 0, 'PE', 150128, 'AV. A NRO. 230 INT. T2 CND. ALTOS DEL RIMAC DPTO. 404', '', '', 'ACTIVO', 'HABIDO', '2022-11-12 15:21:26');
+	(8, '6', '20600453271', 'DATASERVER PERU S.A.C.', 1, 0, 'PE', 150128, 'AV. A NRO. 230 INT. T2 CND. ALTOS DEL RIMAC DPTO. 404', '', '', 'ACTIVO', 'HABIDO', '2022-11-12 15:21:26'),
+	(9, '6', '20601524903', 'MGI SOCIEDAD ADMINISTRADORA DE FONDOS S.A. - MGI SAF S.A.', 1, 0, 'PE', 150120, 'AV. ALBERTO DEL CAMPO NRO. 409 DPTO. 505', '', '', 'ACTIVO', 'HABIDO', '2022-12-03 20:00:12'),
+	(10, '6', '10104707063', 'VIVAR ROSAS JOEL', 1, 0, 'PE', 150133, 'CAL. VILLA MERCEDES MZA. B LOTE. 23', '', '', 'ACTIVO', 'HABIDO', '2022-12-03 20:00:42');
 /*!40000 ALTER TABLE `entidades` ENABLE KEYS */;
 
 -- Volcando estructura para tabla facturacion.guias
@@ -348,8 +351,8 @@ CREATE TABLE IF NOT EXISTS `guias` (
   `fecha_documento` date DEFAULT NULL,
   `ocs` varchar(120) DEFAULT NULL,
   `ots` varchar(120) DEFAULT NULL,
-  `observacion` text,
-  `extras` text,
+  `observacion` text DEFAULT NULL,
+  `extras` text DEFAULT NULL,
   `idcomprobantes` int(11) DEFAULT NULL,
   `creado` datetime DEFAULT NULL,
   `actualizado` datetime DEFAULT NULL,
@@ -366,9 +369,9 @@ CREATE TABLE IF NOT EXISTS `guias` (
   CONSTRAINT `fk_guia_entidades1` FOREIGN KEY (`identidades`) REFERENCES `entidades` (`identidades`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_guia_transportistas1` FOREIGN KEY (`idtransportistas`) REFERENCES `transportistas` (`idtransportistas`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_guia_vehiculos1` FOREIGN KEY (`idvehiculos`) REFERENCES `vehiculos` (`idvehiculos`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Volcando datos para la tabla facturacion.guias: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla facturacion.guias: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `guias` DISABLE KEYS */;
 INSERT INTO `guias` (`idguias`, `fecha_emision`, `fecha_traslado`, `serie_guia`, `numero_guia`, `guia`, `cat_transfer_reason_types_id`, `identidades`, `iddirecciones`, `idtransportistas`, `idvehiculos`, `idconductores`, `tipo_documento`, `numero_documento`, `fecha_documento`, `ocs`, `ots`, `observacion`, `extras`, `idcomprobantes`, `creado`, `actualizado`, `estado`) VALUES
 	(6, '2022-10-17', '2022-10-17', 0001, 1, '0001-00000001', 01, 8, 4, 1, 5, 3, 01, 'F001-00000378', '2022-10-17', 'OC2024-2021', 'PT01-2022-000001', '', '', 0, '2022-12-03 17:02:30', '2022-12-03 17:03:31', 3),
@@ -389,7 +392,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `descripcion` varchar(255) DEFAULT NULL,
   `um` varchar(6) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
-  `idcategorias` int(11) NOT NULL DEFAULT '0',
+  `idcategorias` int(11) NOT NULL DEFAULT 0,
   `actualizado` datetime DEFAULT NULL,
   PRIMARY KEY (`iditems`,`idcategorias`) USING BTREE,
   UNIQUE KEY `codigo_interno` (`codigo_interno`),
@@ -398,9 +401,9 @@ CREATE TABLE IF NOT EXISTS `items` (
   KEY `idcategorias` (`idcategorias`),
   CONSTRAINT `FK_items_categorias` FOREIGN KEY (`idcategorias`) REFERENCES `items_categorias` (`idcategorias`),
   CONSTRAINT `FK_items_um` FOREIGN KEY (`um`) REFERENCES `um` (`simbolo`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Volcando datos para la tabla facturacion.items: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla facturacion.items: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `items` DISABLE KEYS */;
 INSERT INTO `items` (`iditems`, `codigo_sunat`, `codigo_interno`, `descripcion`, `um`, `estado`, `idcategorias`, `actualizado`) VALUES
 	(13, NULL, 'PT01-2022-000001-001', 'PERNOS DE 8 PULGADAS GALVANIZADO', 'NIU', 1, 1, '2022-12-03 16:59:59'),
@@ -409,7 +412,8 @@ INSERT INTO `items` (`iditems`, `codigo_sunat`, `codigo_interno`, `descripcion`,
 	(16, NULL, 'PT01-2022-000004-001', 'TUERCA DE 1 PULGADA', 'NIU', 1, 1, '2022-12-03 18:15:51'),
 	(17, NULL, 'PT01-2022-000005-001', 'TUERCA DE 2 PULGADA', 'NIU', 1, 1, '2022-12-03 18:46:05'),
 	(18, NULL, 'PT01-2022-000006-001', 'PERNOS DE 2 PULGADAS GALVANIZADO', 'NIU', 1, 1, '2022-12-03 19:02:23'),
-	(19, NULL, 'PT01-2022-000007-001', 'PERNOS DE 8 PULGADAS GALVANIZADO', 'NIU', 1, 1, '2022-12-03 19:07:12');
+	(19, NULL, 'PT01-2022-000007-001', 'PERNOS DE 8 PULGADAS GALVANIZADO', 'NIU', 1, 1, '2022-12-03 19:07:12'),
+	(20, NULL, 'PT01-2022-000008-001', 'PERNO 3/4 GALVANIZADO', 'NIU', 1, 1, '2022-12-03 20:02:17');
 /*!40000 ALTER TABLE `items` ENABLE KEYS */;
 
 -- Volcando estructura para tabla facturacion.items_categorias
@@ -417,9 +421,9 @@ CREATE TABLE IF NOT EXISTS `items_categorias` (
   `idcategorias` int(11) NOT NULL AUTO_INCREMENT,
   `categoria` varchar(255) NOT NULL,
   `codigo` varchar(6) NOT NULL DEFAULT '',
-  `estado` int(11) NOT NULL DEFAULT '1',
+  `estado` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`idcategorias`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Volcando datos para la tabla facturacion.items_categorias: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `items_categorias` DISABLE KEYS */;
@@ -431,10 +435,10 @@ INSERT INTO `items_categorias` (`idcategorias`, `categoria`, `codigo`, `estado`)
 CREATE TABLE IF NOT EXISTS `menu` (
   `idmenu` int(11) NOT NULL AUTO_INCREMENT,
   `menu` varchar(50) NOT NULL DEFAULT '0',
-  `estado` int(1) NOT NULL DEFAULT '0',
+  `estado` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`idmenu`),
   UNIQUE KEY `menu` (`menu`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Volcando datos para la tabla facturacion.menu: ~10 rows (aproximadamente)
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
@@ -454,15 +458,15 @@ INSERT INTO `menu` (`idmenu`, `menu`, `estado`) VALUES
 -- Volcando estructura para tabla facturacion.menu_usuarios
 CREATE TABLE IF NOT EXISTS `menu_usuarios` (
   `idmenu_usuarios` int(11) NOT NULL AUTO_INCREMENT,
-  `idmenu` int(11) NOT NULL DEFAULT '0',
-  `idusuarios` int(11) NOT NULL DEFAULT '0',
+  `idmenu` int(11) NOT NULL DEFAULT 0,
+  `idusuarios` int(11) NOT NULL DEFAULT 0,
   `estado` int(1) DEFAULT NULL,
   PRIMARY KEY (`idmenu_usuarios`),
   KEY `fk_menu` (`idmenu`),
   KEY `fk_usuarios` (`idusuarios`),
   CONSTRAINT `fk_menu` FOREIGN KEY (`idmenu`) REFERENCES `menu` (`idmenu`),
   CONSTRAINT `fk_usuarios` FOREIGN KEY (`idusuarios`) REFERENCES `usuarios` (`idusuarios`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Volcando datos para la tabla facturacion.menu_usuarios: ~10 rows (aproximadamente)
 /*!40000 ALTER TABLE `menu_usuarios` DISABLE KEYS */;
@@ -483,12 +487,12 @@ INSERT INTO `menu_usuarios` (`idmenu_usuarios`, `idmenu`, `idusuarios`, `estado`
 CREATE TABLE IF NOT EXISTS `metodos_de_pago` (
   `idmetodo_de_pago` int(2) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(120) NOT NULL DEFAULT '0',
-  `dias` int(2) NOT NULL DEFAULT '0',
-  `credito` int(1) NOT NULL DEFAULT '0',
-  `estado` int(1) NOT NULL DEFAULT '0',
+  `dias` int(2) NOT NULL DEFAULT 0,
+  `credito` int(1) NOT NULL DEFAULT 0,
+  `estado` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`idmetodo_de_pago`),
   UNIQUE KEY `descripcion` (`descripcion`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Volcando datos para la tabla facturacion.metodos_de_pago: ~25 rows (aproximadamente)
 /*!40000 ALTER TABLE `metodos_de_pago` DISABLE KEYS */;
@@ -528,7 +532,7 @@ CREATE TABLE IF NOT EXISTS `monedas` (
   `descripcion` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idmonedas`),
   UNIQUE KEY `descripcion` (`descripcion`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Volcando datos para la tabla facturacion.monedas: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `monedas` DISABLE KEYS */;
@@ -541,10 +545,10 @@ INSERT INTO `monedas` (`idmonedas`, `simbolo`, `iso`, `descripcion`) VALUES
 CREATE TABLE IF NOT EXISTS `motivo_de_traslado` (
   `idmotivo_de_traslado` int(2) unsigned zerofill NOT NULL,
   `descripcion` varchar(250) NOT NULL DEFAULT '0',
-  `estado` int(1) NOT NULL DEFAULT '0',
+  `estado` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`idmotivo_de_traslado`),
   UNIQUE KEY `descripcion` (`descripcion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Volcando datos para la tabla facturacion.motivo_de_traslado: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `motivo_de_traslado` DISABLE KEYS */;
@@ -573,7 +577,7 @@ CREATE TABLE IF NOT EXISTS `ordenes` (
   `cotizacion` varchar(45) DEFAULT NULL,
   `orden_compra` varchar(45) DEFAULT NULL,
   `vendedor` varchar(45) DEFAULT 'Oficina',
-  `payment_method_types_id` int(2) unsigned zerofill NOT NULL DEFAULT '00' COMMENT 'Desde el Facturador',
+  `payment_method_types_id` int(2) unsigned zerofill NOT NULL DEFAULT 00 COMMENT 'Desde el Facturador',
   `cat_currency_types_id` varchar(3) DEFAULT NULL COMMENT 'Desde el Facturador',
   `descuento` double(5,2) DEFAULT NULL,
   `exportacion` tinyint(4) DEFAULT NULL,
@@ -587,9 +591,9 @@ CREATE TABLE IF NOT EXISTS `ordenes` (
   KEY `fk_ot_ot_tipos1_idx` (`idordenes_tipos`) USING BTREE,
   CONSTRAINT `fk_ordenes_entidades1` FOREIGN KEY (`identidades`) REFERENCES `entidades` (`identidades`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ordenes_ordenes_tipos` FOREIGN KEY (`idordenes_tipos`) REFERENCES `ordenes_tipos` (`idordenes_tipos`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Volcando datos para la tabla facturacion.ordenes: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla facturacion.ordenes: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `ordenes` DISABLE KEYS */;
 INSERT INTO `ordenes` (`idordenes`, `fecha_emision`, `fecha_entrega`, `idordenes_tipos`, `correlativo`, `anio`, `orden`, `identidades`, `cotizacion`, `orden_compra`, `vendedor`, `payment_method_types_id`, `cat_currency_types_id`, `descuento`, `exportacion`, `monto`, `estado`, `creado`, `actualizado`) VALUES
 	(7, '2022-10-03', '2022-10-17', 1, 1, 2022, 'PT01-2022-000001', 8, 'COT01-2021', 'OC2024-2021', 'Oficina', 11, 'USD', 0.00, 0, 195.00000, 3, '2022-12-03 16:59:04', '2022-12-03 17:01:45'),
@@ -598,7 +602,8 @@ INSERT INTO `ordenes` (`idordenes`, `fecha_emision`, `fecha_entrega`, `idordenes
 	(10, '2022-11-12', '2022-11-20', 1, 4, 2022, 'PT01-2022-000004', 8, 'COT04-2021', 'OC2027-2021', 'Oficina', 10, 'USD', 0.00, 0, 685.75000, 3, '2022-12-03 18:15:35', '2022-12-03 18:15:55'),
 	(11, '2022-11-15', '2022-11-22', 1, 5, 2022, 'PT01-2022-000005', 4, 'COT05-2021', 'OC2028-2021', 'Oficina', 13, 'PEN', 0.00, 0, 320.45000, 3, '2022-12-03 18:45:32', '2022-12-03 18:46:09'),
 	(12, '2022-11-28', '2022-12-01', 1, 6, 2022, 'PT01-2022-000006', 7, 'COT06-2021', 'OC2029-2021', 'Oficina', 10, 'USD', 0.00, 0, 186.00000, 3, '2022-12-03 19:02:03', '2022-12-03 19:02:27'),
-	(13, '2022-11-28', '2022-12-01', 1, 7, 2022, 'PT01-2022-000007', 6, 'COT07-2021', 'OC2030-2021', 'Oficina', 12, 'PEN', 0.00, 0, 910.00000, 3, '2022-12-03 19:05:59', '2022-12-03 19:07:16');
+	(13, '2022-11-28', '2022-12-01', 1, 7, 2022, 'PT01-2022-000007', 6, 'COT07-2021', 'OC2030-2021', 'Oficina', 12, 'PEN', 0.00, 0, 910.00000, 3, '2022-12-03 19:05:59', '2022-12-03 19:07:16'),
+	(14, '2022-12-03', '2022-12-03', 1, 8, 2022, 'PT01-2022-000008', 9, 'COT2530', 'OC1258', 'Oficina', 08, 'USD', 0.00, 0, 137.50000, 7, '2022-12-03 20:01:29', '2022-12-03 20:03:35');
 /*!40000 ALTER TABLE `ordenes` ENABLE KEYS */;
 
 -- Volcando estructura para tabla facturacion.ordenes_detalles
@@ -616,9 +621,9 @@ CREATE TABLE IF NOT EXISTS `ordenes_detalles` (
   KEY `fk_ot_detalles_ot_idx` (`idordenes`) USING BTREE,
   CONSTRAINT `fk_ordenes_detalles_items1` FOREIGN KEY (`iditems`) REFERENCES `items` (`iditems`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ordenes_detalles_ordenes1` FOREIGN KEY (`idordenes`) REFERENCES `ordenes` (`idordenes`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Volcando datos para la tabla facturacion.ordenes_detalles: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla facturacion.ordenes_detalles: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `ordenes_detalles` DISABLE KEYS */;
 INSERT INTO `ordenes_detalles` (`idordenes_detalles`, `cantidad_pedido`, `cantidad_entregada`, `valor_unitario`, `idordenes`, `iditems`, `estado`, `actualizado`) VALUES
 	(13, 60.00, 60.00, 3.250000, 7, 13, 1, '2022-12-03 16:59:59'),
@@ -627,7 +632,8 @@ INSERT INTO `ordenes_detalles` (`idordenes_detalles`, `cantidad_pedido`, `cantid
 	(16, 325.00, 325.00, 2.110000, 10, 16, 1, '2022-12-03 18:15:51'),
 	(17, 85.00, 85.00, 3.770000, 11, 17, 1, '2022-12-03 18:46:05'),
 	(18, 120.00, 120.00, 1.550000, 12, 18, 1, '2022-12-03 19:02:23'),
-	(19, 200.00, 200.00, 4.550000, 13, 19, 1, '2022-12-03 19:07:12');
+	(19, 200.00, 200.00, 4.550000, 13, 19, 1, '2022-12-03 19:07:12'),
+	(20, 25.00, 0.00, 5.500000, 14, 20, 0, '2022-12-03 20:02:17');
 /*!40000 ALTER TABLE `ordenes_detalles` ENABLE KEYS */;
 
 -- Volcando estructura para tabla facturacion.ordenes_detalles_guia_factura
@@ -642,9 +648,9 @@ CREATE TABLE IF NOT EXISTS `ordenes_detalles_guia_factura` (
   CONSTRAINT `fk_ot_detalles_has_guia1` FOREIGN KEY (`idguias`) REFERENCES `guias` (`idguias`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `fk_ot_detalles_has_guia_factura1` FOREIGN KEY (`idcomprobantes`) REFERENCES `comprobantes` (`idcomprobantes`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ot_detalles_has_guia_ot_detalles1` FOREIGN KEY (`idordenes_detalles`) REFERENCES `ordenes_detalles` (`idordenes_detalles`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Volcando datos para la tabla facturacion.ordenes_detalles_guia_factura: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla facturacion.ordenes_detalles_guia_factura: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `ordenes_detalles_guia_factura` DISABLE KEYS */;
 INSERT INTO `ordenes_detalles_guia_factura` (`idordenes_detalles`, `idguias`, `cantidad`, `idcomprobantes`) VALUES
 	(13, 6, 60.00, 7),
@@ -654,7 +660,8 @@ INSERT INTO `ordenes_detalles_guia_factura` (`idordenes_detalles`, `idguias`, `c
 	(17, 10, 85.00, 11),
 	(18, 11, 120.00, 12),
 	(19, 12, 100.00, 13),
-	(19, 13, 100.00, 14);
+	(19, 13, 100.00, 14),
+	(20, NULL, 25.00, 15);
 /*!40000 ALTER TABLE `ordenes_detalles_guia_factura` ENABLE KEYS */;
 
 -- Volcando estructura para tabla facturacion.ordenes_tipos
@@ -665,7 +672,7 @@ CREATE TABLE IF NOT EXISTS `ordenes_tipos` (
   PRIMARY KEY (`idordenes_tipos`) USING BTREE,
   UNIQUE KEY `ot_tipo_UNIQUE` (`orden_tipo`) USING BTREE,
   UNIQUE KEY `ot_serie_UNIQUE` (`orden_serie`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Volcando datos para la tabla facturacion.ordenes_tipos: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `ordenes_tipos` DISABLE KEYS */;
@@ -686,9 +693,9 @@ CREATE TABLE IF NOT EXISTS `tipo_cambio` (
   `registrado` datetime DEFAULT NULL,
   PRIMARY KEY (`idtipo_cambio`),
   UNIQUE KEY `fecha_UNIQUE` (`fecha`)
-) ENGINE=InnoDB AUTO_INCREMENT=325 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=325 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Volcando datos para la tabla facturacion.tipo_cambio: ~246 rows (aproximadamente)
+-- Volcando datos para la tabla facturacion.tipo_cambio: ~309 rows (aproximadamente)
 /*!40000 ALTER TABLE `tipo_cambio` DISABLE KEYS */;
 INSERT INTO `tipo_cambio` (`idtipo_cambio`, `fecha`, `compra`, `venta`, `registrado`) VALUES
 	(1, '2022-01-01', 3.975, 3.998, '2022-03-22 18:37:32'),
@@ -1014,7 +1021,7 @@ CREATE TABLE IF NOT EXISTS `transportistas` (
   `actualizado` datetime DEFAULT NULL,
   PRIMARY KEY (`idtransportistas`),
   UNIQUE KEY `ruc_UNIQUE` (`ruc`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Volcando datos para la tabla facturacion.transportistas: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `transportistas` DISABLE KEYS */;
@@ -1032,7 +1039,7 @@ CREATE TABLE IF NOT EXISTS `um` (
   `actualizado` datetime DEFAULT NULL,
   PRIMARY KEY (`idum`),
   KEY `simbolo` (`simbolo`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Volcando datos para la tabla facturacion.um: ~11 rows (aproximadamente)
 /*!40000 ALTER TABLE `um` DISABLE KEYS */;
@@ -1061,12 +1068,12 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `token` varchar(255) NOT NULL,
   `creado` datetime DEFAULT NULL,
   `actualizado` datetime DEFAULT NULL,
-  `estado` int(1) DEFAULT '1',
+  `estado` int(1) DEFAULT 1,
   PRIMARY KEY (`idusuarios`),
   UNIQUE KEY `dni` (`dni`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Volcando datos para la tabla facturacion.usuarios: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla facturacion.usuarios: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` (`idusuarios`, `usuario`, `password`, `nombres`, `apellidos`, `dni`, `token`, `creado`, `actualizado`, `estado`) VALUES
 	(1, 'Alfredo', '123456', 'ALFREDO', 'VISITACION MEDINA', '99999999', 'gSrXVdDzYAfNZiajWsohZkebGKtmfBuQ635MwUdbUzByh2wHNG', '2022-03-27 14:41:16', '2022-03-27 14:41:17', 1),
@@ -1088,9 +1095,9 @@ CREATE TABLE IF NOT EXISTS `vehiculos` (
   PRIMARY KEY (`idvehiculos`,`idtransportistas`),
   KEY `fk_vehiculos_transportistas1_idx` (`idtransportistas`),
   CONSTRAINT `fk_vehiculos_transportistas1` FOREIGN KEY (`idtransportistas`) REFERENCES `transportistas` (`idtransportistas`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Volcando datos para la tabla facturacion.vehiculos: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla facturacion.vehiculos: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `vehiculos` DISABLE KEYS */;
 INSERT INTO `vehiculos` (`idvehiculos`, `marca`, `placa`, `inscripcion`, `estado`, `idtransportistas`, `actualizado`) VALUES
 	(3, 'HYUNDAI', 'ABC-444', '1515151516', 1, 2, '2022-10-15 20:37:42'),

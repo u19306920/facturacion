@@ -5,7 +5,7 @@ if ($_SESSION['sesion']!=1) {
 }
 
 require('class/ordenes.php');
-print_r($_POST);
+//print_r($_POST);
 
 $number = $_POST['correlativo'];
 $length = 6;
@@ -13,7 +13,7 @@ $string = substr(str_repeat(0, $length).$number, - $length);
 
 $orden = $_POST['serie']."-".$string;
 
-echo $orden;
+//echo $orden;
 
 $objOrdenes = new Ordenes();
 $orden = $objOrdenes->update_correlativo($_POST['correlativo'],$orden,$_POST['idordenes']);

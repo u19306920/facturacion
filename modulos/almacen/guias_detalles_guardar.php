@@ -39,11 +39,11 @@ $nots = substr($nots,0,-6);
 $objGuia = new Guias();
 $objGuia->update_ocs_ots($nocs,$nots,$_SESSION['idguias']);
 $objGuia->cambiar('1',$_SESSION['idguias']);
-
+/*
 echo "<pre>";
 print_r($_SESSION);
 echo "</pre>";
-
+*/
 unset($_SESSION['carrito']);
 unset($_SESSION['ocs']);
 unset($_SESSION['ots']);
